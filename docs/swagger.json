@@ -1,0 +1,88 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "paths": {
+        "/adduser": {
+            "post": {
+                "description": "This endpoint let the user register themself by providing user information",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Creates a new user",
+                "parameters": [
+                    {
+                        "description": "user object",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Users"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "user created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/models.Users"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/getuser/{id}": {
+            "get": {
+                "description": "This end-point takes the user id and return the useinfo with that id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info about the user",
+                        "schema": {
+                            "type": "Object"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Users": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "userid": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,58 @@
+definitions:
+  models.Users:
+    properties:
+      name:
+        type: string
+      userid:
+        type: integer
+    type: object
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+paths:
+  /adduser:
+    post:
+      description: This endpoint let the user register themself by providing user
+        information
+      parameters:
+      - description: user object
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.Users'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: user created successfully
+          schema:
+            $ref: '#/definitions/models.Users'
+        "400":
+          description: Bad request
+          schema:
+            type: string
+      summary: Creates a new user
+  /getuser/{id}:
+    get:
+      description: This end-point takes the user id and return the useinfo with that
+        id
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Info about the user
+          schema:
+            type: Object
+swagger: "2.0"
